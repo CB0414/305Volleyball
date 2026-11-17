@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>305 Volleyball | Staten Island Clinics & Open Gyms</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --yellow: #FFD700;
+    --pink: #FF2E9A;
+    --blue: #4DA6FF;
+    --bg: #000000;
+    --dark: #111111;
+    --white: #FFFFFF;
+    --gray: #CCCCCC;
+  }
+  html { scroll-behavior: smooth; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--white);
+    line-height: 1.6;
+  }
+  h1, h2, h3, .logo-text { font-family: 'Oswald', sans-serif; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+  a { color: var(--yellow); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 2px solid var(--yellow);
+  }
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .logo img { height: 50px; width: auto; }
+  .logo-text { font-size: 1.6rem; color: var(--yellow); }
+  .nav-links { display: flex; gap: 30px; list-style: none; }
+  .nav-links a { color: var(--white); font-weight: 500; font-size: 0.95rem; }
+  .nav-links a:hover { color: var(--pink); }
+
+  .hero {
+    height: 100vh;
+    background: radial-gradient(circle at center, #1a0a1a 0%, #000 70%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 80px;
+    position: relative;
+  }
+  .hero-content h1 { font-size: 4.2rem; line-height: 1.1; margin-bottom: 10px; color: var(--yellow); }
+  .hero-content .tagline { font-size: 1.8rem; color: var(--white); margin-bottom: 20px; letter-spacing: 2px; }
+  .hero-content p { font-size: 1.25rem; max-width: 720px; margin: 0 auto 30px; color: #eee; }
+  .cta {
+    display: inline-block;
+    background: var(--pink);
+    color: var(--white);
+    padding: 16px 40px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: transform 0.2s, background 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+  .cta:hover { transform: translateY(-3px); background: #ff4db2; text-decoration: none; }
+  .cta.secondary {
+    background: transparent;
+    color: var(--yellow);
+    border: 2px solid var(--yellow);
+  }
+  .cta.secondary:hover { background: var(--yellow); color: var(--bg); }
+  .cta-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+
+  section { padding: 100px 0; }
+  .section-title {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 50px;
+    color: var(--yellow);
+    position: relative;
+  }
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: var(--pink);
+    margin: 15px auto 0;
+  }
+
+  .pillars-accordion {
+    max-width: 700px;
+    margin: 0 auto 60px;
+  }
+  .pillar {
+    border-bottom: 1px solid #333;
+    margin-bottom: 8px;
+  }
+  .pillar summary {
+    font-size: 1.5rem;
+    padding: 18px 10px;
+    cursor: pointer;
+    list-style: none;
+    color: var(--yellow);
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pillar summary::-webkit-details-marker { display: none; }
+  .pillar summary::after {
+    content: '+';
+    font-size: 1.8rem;
+    color: var(--pink);
+    transition: transform 0.2s;
+  }
+  .pillar[open] summary::after {
+    content: '−';
+  }
+  .pillar summary:hover { color: var(--white); }
+  .pillar-content {
+    padding: 0 10px 20px 10px;
+    color: #ddd;
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+
+  .philosophy {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.8;
+  }
+  .slogan {
+    text-align: center;
+    font-size: 2.8rem;
+    color: var(--pink);
+    margin: 60px 0 20px;
+    letter-spacing: 2px;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .info-card {
+    background: var(--dark);
+    border: 2px solid #333;
+    border-radius: 12px;
+    padding: 28px;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .info-card:hover {
+    border-color: var(--yellow);
+    transform: translateY(-6px);
+  }
+  .info-card h3 { color: var(--yellow); margin-bottom: 12px; font-size: 1.4rem; }
+  .info-card p, .info-card li { color: #ddd; }
+  .info-card ul { padding-left: 18px; margin-top: 10px; }
+
+  .schedule {
+    background: #0a0a0a;
+  }
+  .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  .schedule-table th, .schedule-table td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid #333;
+  }
+  .schedule-table th { color: var(--yellow); font-family: 'Oswald', sans-serif; font-size: 1.1rem; }
+  .schedule-table tr:hover { background: rgba(255,46,154,0.08); }
+
+  .contact-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto 40px;
+  }
+  .contact-card {
+    background: var(--dark);
+    border: 2px solid #333;
+    border-radius: 12px;
+    padding: 30px 20px;
+    text-align: center;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .contact-card:hover {
+    border-color: var(--pink);
+    transform: translateY(-5px);
+  }
+  .contact-card h3 { color: var(--yellow); margin-bottom: 12px; font-size: 1.3rem; }
+  .contact-card a { color: var(--white); font-size: 1.05rem; font-weight: 600; }
+  .contact-card a:hover { color: var(--pink); }
+  .contact-card p { color: var(--gray); margin-top: 10px; font-size: 0.95rem; }
+
+  footer {
+    background: #000;
+    padding: 40px 0;
+    text-align: center;
+    border-top: 2px solid var(--yellow);
+    color: var(--gray);
+  }
+
+  @media (max-width: 768px) {
+    .hero-content h1 { font-size: 2.6rem; }
+    .nav-links { display: none; }
+    .section-title { font-size: 2.2rem; }
+    .slogan { font-size: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <div class="logo">
+        <img src="logo.jpg" alt="305 Volleyball Logo">
+        <div class="logo-text">305 Volleyball</div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#clinics">Clinics</a></li>
+        <li><a href="#schedule">Schedule</a></li>
+        <li><a href="#contact">Register</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>305 VOLLEYBALL</h1>
+    <div class="tagline">3 CONTACTS. 0 JUDGMENT. 5 PILLARS.</div>
+    <p>Staten Island volleyball clinics and open gyms. Start anywhere. Go everywhere.</p>
+    <div class="cta-group">
+      <a href="https://forms.gle/FD8WY2CNYgqJg9qi7" target="_blank" rel="noopener" class="cta">Register for Clinics</a>
+      <a href="#about" class="cta secondary">Our Pillars</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <h2 class="section-title">Our Five Pillars</h2>
+    <div class="pillars-accordion">
+      <details class="pillar">
+        <summary>1. Opportunity</summary>
+        <div class="pillar-content">
+          We create access for every athlete, no matter their experience level. Whether you're brand new to the game or looking to refine advanced skills, 305 Volleyball gives you the chance to discover volleyball in a welcoming space.
+        </div>
+      </details>
+      <details class="pillar">
+        <summary>2. Growth</summary>
+        <div class="pillar-content">
+          Improvement never stops. We focus on developing technical skills, confidence, and character so athletes leave every session better than they arrived — both on the court and in life.
+        </div>
+      </details>
+      <details class="pillar">
+        <summary>3. Community</summary>
+        <div class="pillar-content">
+          Volleyball is better together. We build meaningful connections between athletes, coaches, and families, creating a supportive environment where everyone belongs and lifts each other up.
+        </div>
+      </details>
+      <details class="pillar">
+        <summary>4. Passion</summary>
+        <div class="pillar-content">
+          We foster a genuine love for the game that lasts beyond any single clinic or open gym. Our goal is for athletes to fall in love with volleyball and carry that passion with them.
+        </div>
+      </details>
+      <details class="pillar">
+        <summary>5. Excellence</summary>
+        <div class="pillar-content">
+          Excellence means giving your best effort and holding yourself to a high personal standard, whatever your current level. We celebrate mastery of the basics just as much as advanced play.
+        </div>
+      </details>
+    </div>
+
+    <h2 class="section-title" style="margin-top:80px;">Our Philosophy</h2>
+    <div class="philosophy">
+      <p>Every athlete has a different journey. We create the opportunity to discover the game, develop a love for it, build meaningful connections and pursue whatever level of success they envision.</p>
+      <p style="margin-top:30px;">305 Volleyball is a Staten Island-based volleyball training program focused on developing skills, building confidence, and fostering a love for the game in a positive, competitive, and supportive environment. We provide high-quality training opportunities year-round so athletes can continue improving both in and out of season.</p>
+    </div>
+
+    <div class="slogan">START ANYWHERE.<br>GO EVERYWHERE.</div>
+  </div>
+</section>
+
+<section id="clinics">
+  <div class="container">
+    <h2 class="section-title">Clinic Details</h2>
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Location</h3>
+        <p><strong>Staten Island Academy</strong></p>
+        <p>715 Todt Hill Rd<br>Staten Island, NY 10304</p>
+        <p style="margin-top:10px; color:var(--pink); font-weight:600;">Use the Buttonwood Road entrance</p>
+        <div style="margin-top:15px;">
+          <a href="https://www.google.com/maps/search/?api=1&query=715+Todt+Hill+Rd,+Staten+Island,+NY+10304" target="_blank" rel="noopener">Google Maps</a>
+          &nbsp;·&nbsp;
+          <a href="https://maps.apple.com/?q=715+Todt+Hill+Rd,+Staten+Island,+NY+10304" target="_blank" rel="noopener">Apple Maps</a>
+        </div>
+      </div>
+      <div class="info-card">
+        <h3>Schedule</h3>
+        <p><strong>Saturdays</strong> 7:00 – 9:00 PM</p>
+        <p><strong>Sundays</strong> 2:30 – 4:30 PM</p>
+      </div>
+      <div class="info-card">
+        <h3>Cost & Payment</h3>
+        <p><strong>$40</strong> per clinic session</p>
+        <p><strong>$20</strong> for open gyms</p>
+        <p style="margin-top:12px;">Payment accepted:</p>
+        <p>Cash · Zelle · Venmo</p>
+      </div>
+      <div class="info-card">
+        <h3>What to Bring</h3>
+        <ul>
+          <li>Athletic clothes & shoes</li>
+          <li>Kneepads</li>
+          <li>Water</li>
+        </ul>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:40px;">
+      <a href="https://forms.gle/FD8WY2CNYgqJg9qi7" target="_blank" rel="noopener" class="cta">Register Now</a>
+    </div>
+  </div>
+</section>
+
+<section id="schedule" class="schedule">
+  <div class="container">
+    <h2 class="section-title">Upcoming Clinic Dates</h2>
+    <p style="text-align:center; margin-bottom:30px; color:#ccc;">Select your dates on the registration form. You can register for multiple sessions.</p>
+    <table class="schedule-table">
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Available Dates</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>October</td>
+          <td>10, 11, 17, 18</td>
+        </tr>
+        <tr>
+          <td>November</td>
+          <td>1, 7, 14, 21, 22, 28, 29</td>
+        </tr>
+        <tr>
+          <td>December</td>
+          <td>5, 6, 12, 13</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="text-align:center; margin-top:20px; color:#aaa; font-size:0.95rem;">Sessions run Saturdays 7–9pm and Sundays 2:30–4:30pm at Staten Island Academy.</p>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title">Register & Stay Connected</h2>
+    <p style="text-align:center; max-width:700px; margin:0 auto 40px; color:#ccc;">Sign up for clinics and join the GroupMe for updates, announcements, and important information.</p>
+
+    <div class="contact-cards">
+      <div class="contact-card">
+        <h3>Clinic Registration</h3>
+        <a href="https://forms.gle/FD8WY2CNYgqJg9qi7" target="_blank" rel="noopener" class="cta" style="margin-top:10px;">Open Registration Form</a>
+        <p>Complete the form to reserve your spot(s). Returning athletes can skip to date selection.</p>
+      </div>
+      <div class="contact-card">
+        <h3>GroupMe</h3>
+        <a href="https://groupme.com/join_group/115955592/O9VYt3uI" target="_blank" rel="noopener" class="cta" style="margin-top:10px;">Join the GroupMe</a>
+        <p>Get clinic updates and announcements.</p>
+      </div>
+      <div class="contact-card">
+        <h3>Location</h3>
+        <p>Staten Island Academy</p>
+        <p>715 Todt Hill Rd<br>Staten Island, NY 10304</p>
+        <p style="margin-top:8px; color:var(--pink); font-weight:600;">Use the Buttonwood Road entrance</p>
+        <div style="margin-top:12px;">
+          <a href="https://www.google.com/maps/search/?api=1&query=715+Todt+Hill+Rd,+Staten+Island,+NY+10304" target="_blank" rel="noopener">Google Maps</a>
+          &nbsp;·&nbsp;
+          <a href="https://maps.apple.com/?q=715+Todt+Hill+Rd,+Staten+Island,+NY+10304" target="_blank" rel="noopener">Apple Maps</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 305 Volleyball. All rights reserved.</p>
+    <p style="margin-top:10px; font-size:0.9rem;">Start Anywhere. Go Everywhere.</p>
+  </div>
+</footer>
+
+</body>
+</html>
